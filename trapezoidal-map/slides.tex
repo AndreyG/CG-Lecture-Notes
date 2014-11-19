@@ -248,7 +248,7 @@
     \item $E[LocT(p)] = \sum_{i=1}^n E[X_i] \le \sum_{i=1}^n 3 * Pr[\Delta_p(\mathfrak{T}_{i-1}) \neq \Delta_p(\mathfrak{T}_{i})]$ 
 
     \pause
-    \item $Pr[\Delta_p(\mathfrak{T}_{i-1}) \neq \Delta_p(\mathfrak{T}_{i})] = Pr[\Delta_p(\mathfrak{T}_{i}) \text{ появился на } i \text{-й (т.е. последней итерации)}]$
+    \item $Pr[\Delta_p(\mathfrak{T}_{i-1}) \neq \Delta_p(\mathfrak{T}_{i})] = Pr[\Delta_p(\mathfrak{T}_{i}) \text{ появился на } i \text{-й (т.е. последней) итерации}]$
 
     \pause
     \item $\mathfrak{T}_{i}$ зависит только от множества $S_i$, но не от порядка элементов в нем  
@@ -259,7 +259,7 @@
     \end{remark}
 
     \pause
-    \item $Pr[\Delta_p(\mathfrak{T}_{i}) \text{ появился на } i \text{-й (т.е. последней итерации)}] 
+    \item $Pr[\Delta_p(\mathfrak{T}_{i}) \text{ появился на } i \text{-й (т.е. последней) итерации}] 
             = Pr[\Delta_p(\mathfrak{T}_{i}) \text{ исчезнет при удалении одного отрезка}] 
             = \frac{\text{число отрезков ``держащих'' } \Delta_p(\mathfrak{T}_{i})}{i} = O(\frac{1}{i})$
 
@@ -267,6 +267,21 @@
     \item $LocT(p) = \sum_{i=1}^n O(\frac{1}{i}) = O(\log n)$
 
     \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ожидаемое число добавленных трапецоидов}
+
+    $$E[InterTrNum(\mathfrak{T}_{i-1}, s_i)] =$$
+    \pause     
+    \begin{remark}
+        ничтоже сумняшеся убираем зависимость от $s_i$
+    \end{remark}
+        $$= O(E(|\mathfrak{T}_{i}| - |\mathfrak{T}_{i - 1}|)) = $$
+    \pause
+        $$= O(\sum_{\Delta(\mathfrak{T}_i)} Pr[\Delta \text{ появился на } i \text{-й итерации}]) = $$
+    \pause
+        $$= O(i * \frac{1}{i}) = O(1)$$
 \end{frame}
 
 \end{document}
