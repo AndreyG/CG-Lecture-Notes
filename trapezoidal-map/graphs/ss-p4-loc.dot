@@ -1,0 +1,34 @@
+digraph ss_b4 {
+    p1 [label="p_1"] [shape=circle];
+    d0 [label="\\Delta_0^{(1)}"] [shape=box];
+    q1 [label="q_1"] [shape=circle];
+    d1 [label="\\Delta_1^{(1)}"] [shape=box] [color=red];
+    p2 [label="p_2"] [shape=circle];
+    q2 [label="q_2"] [shape=circle];
+    s1 [label="s_1"] [shape=octagon];
+    d2 [label="\\Delta_2^{(2)}"] [shape=box];
+    s21 [label="s_2"] [shape=octagon];
+    s22 [label="s_2"] [shape=octagon];
+    q3 [label="q_3"] [shape=circle];
+    s3 [label="s_3"] [shape=octagon];
+    d3 [label="\\Delta_3^{(2)}"] [shape=box];
+    d5 [label="\\Delta_5^{(2)}"] [shape=box];
+    d4 [label="\\Delta_4^{(2)}"] [shape=box];
+    d6 [label="\\Delta_6^{(3)}"] [shape=box];
+    d7 [label="\\Delta_7^{(3)}"] [shape=box];
+    d8 [label="\\Delta_8^{(3)}"] [shape=box];
+
+    p1 -> d0
+    p1 -> q1 -> s1 -> d1 [color=red]; 
+    q1 -> q2 -> q3 -> d8
+    s1 -> p2 -> d2
+    p2 -> s21 -> d3
+    s21 -> d4
+    q2 -> s22
+    q3 -> s3
+    s3 -> d6
+    s3 -> d7
+    s22 -> d5
+    s22 -> d4
+}
+

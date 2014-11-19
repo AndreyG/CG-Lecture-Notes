@@ -1,0 +1,16 @@
+digraph ss1 {
+    p1 [label="p_1"] [shape=circle];
+    d0 [label="\\Delta_0^{(1)}"] [shape=box];
+    q1 [label="q_1"] [shape=circle];
+    s1 [label="s_1"] [shape=octagon];
+    d1 [label="\\Delta_1^{(1)}"] [shape=box];
+    d2 [label="\\Delta_2^{(1)}"] [shape=box];
+    d3 [label="\\Delta_3^{(1)}"] [shape=box];
+
+    p1 -> d0
+    p1 -> q1
+    q1 -> s1
+    q1 -> d3
+    s1 -> d1
+    s1 -> d2
+}
