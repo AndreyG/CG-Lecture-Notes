@@ -1,5 +1,16 @@
 \documentclass{beamer}
 
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{textcomp}
+\usepackage{amsthm}
+\usepackage{xspace}
+
+\newtheorem*{remark}{Замечание}
+
 \title{Trapezoidal Map}
 
 \begin{document}
@@ -194,6 +205,68 @@
             \center{\includegraphics[width=1.\linewidth]{compiled_graphs/ss-s4i-p4-2.eps}}
         \end{minipage}
     \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Оценки для поисковой структуры}
+
+    Что нужно оценивать?
+    \begin{itemize}
+        \pause
+        \item{время построения ($BT$)}
+        \pause
+        \item{занимаемое место ($S$)}
+        \pause
+        \item{\textit{время запроса}}
+    \end{itemize}
+
+    \pause
+    $$ BT = \sum_{i=1}^n \left[LocT(p_i) + O(InterTrNum(\mathfrak{T}_{i-1}, s_i)) \right]$$
+    \pause
+    $$ S = \sum_{i=1}^n O(InterTrNum(\mathfrak{T}_{i-1}, s_i))$$
+
+    \pause
+    Что будет доказано?
+
+    \begin{itemize}
+        \item{$E[LocT(p)] = O(\log(n))$, для \textbf{фиксированной} точки $p$}
+        \item{$E[InterTrNum(\mathfrak{T}_{i-1}, s_i)] = O(1)$} 
+    \end{itemize}
+    математическое ожидание берется по всем перестановкам множества отрезков $S = \{s_i\}_{i=1}^n$
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ожидаемая длина пути в поисковой структуре}
+
+    \begin{itemize}
+    
+    \pause
+    \item $LocT(p) = [\text{length of path to }p] = \sum_{i=1}^n X_i$, где $X_i$ --- увеличение длины пути при добавлении $s_i$.
+    
+    \pause
+    \item $E[LocT(p)] = \sum_{i=1}^n E[X_i] \le \sum_{i=1}^n 3 * Pr[\Delta_p(\mathfrak{T}_{i-1}) \neq \Delta_p(\mathfrak{T}_{i})]$ 
+
+    \pause
+    \item $Pr[\Delta_p(\mathfrak{T}_{i-1}) \neq \Delta_p(\mathfrak{T}_{i})] = Pr[\Delta_p(\mathfrak{T}_{i}) \text{ появился на } i \text{-й (т.е. последней итерации)}]$
+
+    \pause
+    \item $\mathfrak{T}_{i}$ зависит только от множества $S_i$, но не от порядка элементов в нем  
+    
+    \pause     
+    \begin{remark}
+        С подобной ситуацией мы уже сталкивались в алгоритме поиска MinDisk'а и пользовались магией backwards analysis 
+    \end{remark}
+
+    \pause
+    \item $Pr[\Delta_p(\mathfrak{T}_{i}) \text{ появился на } i \text{-й (т.е. последней итерации)}] 
+            = Pr[\Delta_p(\mathfrak{T}_{i}) \text{ исчезнет при удалении одного отрезка}] 
+            = \frac{\text{число отрезков ``держащих'' } \Delta_p(\mathfrak{T}_{i})}{i} = O(\frac{1}{i})$
+
+    \pause
+    \item $LocT(p) = \sum_{i=1}^n O(\frac{1}{i}) = O(\log n)$
+
+    \end{itemize}
 \end{frame}
 
 \end{document}
